@@ -84,11 +84,14 @@ GEM
     brakeman (6.2.2)
       racc
     builder (3.3.0)
-    byebug (11.1.3)
     coderay (1.1.3)
     concurrent-ruby (1.3.4)
     connection_pool (2.4.1)
     crass (1.0.6)
+    database_cleaner-active_record (2.2.0)
+      activerecord (>= 5.a)
+      database_cleaner-core (~> 2.0.0)
+    database_cleaner-core (2.0.1)
     date (3.4.1)
     devise (4.9.4)
       bcrypt (~> 3.0)
@@ -100,6 +103,7 @@ GEM
       devise (~> 4.0)
       warden-jwt_auth (~> 0.10)
     diff-lcs (1.5.1)
+    docile (1.4.1)
     dotenv (3.1.6)
     dotenv-rails (3.1.6)
       dotenv (= 3.1.6)
@@ -145,6 +149,8 @@ GEM
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     json (2.9.0)
+    jsonapi-serializer (2.2.0)
+      activesupport (>= 4.2)
     jwt (2.9.3)
       base64
     kamal (2.4.0)
@@ -220,9 +226,11 @@ GEM
       activesupport (>= 7.0.0)
       rack
       railties (>= 7.0.0)
-    pry (0.15.0)
+    pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
+    pry-nav (1.0.0)
+      pry (>= 0.9.10, < 0.15)
     pry-rails (0.3.11)
       pry (>= 0.13.0)
     psych (5.2.1)
@@ -233,6 +241,8 @@ GEM
     raabro (1.4.0)
     racc (1.8.1)
     rack (3.1.8)
+    rack-cors (2.0.2)
+      rack (>= 2.0.0)
     rack-session (2.0.0)
       rack (>= 3.0.0)
     rack-test (2.1.0)
@@ -327,11 +337,21 @@ GEM
       rubocop-rails
     ruby-progressbar (1.13.0)
     securerandom (0.4.1)
+    shoulda-matchers (4.5.1)
+      activesupport (>= 4.2.0)
     sidekiq (7.3.7)
       connection_pool (>= 2.3.0)
       logger
       rack (>= 2.2.4)
       redis-client (>= 0.22.2)
+    simplecov (0.22.0)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.13.1)
+    simplecov-tailwindcss (2.2.0)
+      simplecov (~> 0.16)
+    simplecov_json_formatter (0.1.4)
     solid_cable (3.0.4)
       actioncable (>= 7.2)
       activejob (>= 7.2)
@@ -397,7 +417,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   brakeman
-  byebug
+  database_cleaner-active_record
   devise
   devise-jwt
   dotenv-rails
@@ -405,16 +425,22 @@ DEPENDENCIES
   faker
   importmap-rails
   jbuilder
+  jsonapi-serializer
   kamal
   kaminari
   pg (~> 1.1)
   propshaft
+  pry-nav
   pry-rails
   puma (>= 5.0)
+  rack-cors
   rails (~> 8.0.1)
   rspec-rails
   rubocop-rails-omakase
+  shoulda-matchers
   sidekiq
+  simplecov
+  simplecov-tailwindcss
   solid_cable
   solid_cache
   solid_queue
