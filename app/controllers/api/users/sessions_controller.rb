@@ -10,7 +10,7 @@ module Api
       private
 
       def respond_with(current_user, _opts = {})
-        render json: { data: { user: UserSerializer.new(current_user).serializable_hash[:data][:attributes] } }
+        render json: current_user
       end
 
       def respond_to_on_destroy

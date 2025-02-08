@@ -20,22 +20,16 @@ RSpec.describe 'Exposures API', type: :request do
 
     let(:expected_response) do
       {
-        data: [
+        exposures: [
           {
-            id: first_exposure.id.to_s,
-            type: 'exposure',
-            attributes: {
-              title: first_exposure.title,
-              description: first_exposure.description
-            }
+            id: first_exposure.id,
+            title: first_exposure.title,
+            description: first_exposure.description
           },
           {
-            id: third_exposure.id.to_s,
-            type: 'exposure',
-            attributes: {
-              title: third_exposure.title,
-              description: third_exposure.description
-            }
+            id: third_exposure.id,
+            title: third_exposure.title,
+            description: third_exposure.description
           }
         ]
       }.deep_stringify_keys
@@ -53,13 +47,10 @@ RSpec.describe 'Exposures API', type: :request do
     context 'when the exposure exists' do
       let(:expected_response) do
         {
-          data: {
-            id: third_exposure.id.to_s,
-            type: 'exposure',
-            attributes: {
-              title: third_exposure.title,
-              description: third_exposure.description
-            }
+          exposure: {
+            id: third_exposure.id,
+            title: third_exposure.title,
+            description: third_exposure.description
           }
         }.deep_stringify_keys
       end
@@ -96,13 +87,10 @@ RSpec.describe 'Exposures API', type: :request do
     context 'when the request is valid' do
       let(:expected_response) do
         {
-          data: {
-            id: Exposure.last.id.to_s,
-            type: 'exposure',
-            attributes: {
-              title: 'Fear of Public Speaking',
-              description: 'Gradually practice speaking in public settings.'
-            }
+          exposure: {
+            id: Exposure.last.id,
+            title: 'Fear of Public Speaking',
+            description: 'Gradually practice speaking in public settings.'
           }
         }.deep_stringify_keys
       end
@@ -131,13 +119,10 @@ RSpec.describe 'Exposures API', type: :request do
     context 'when the exposure exists' do
       let(:expected_response) do
         {
-          data: {
-            id: third_exposure.id.to_s,
-            type: 'exposure',
-            attributes: {
-              title: 'Updated Title',
-              description: third_exposure.description
-            }
+          exposure: {
+            id: third_exposure.id,
+            title: 'Updated Title',
+            description: third_exposure.description
           }
         }.deep_stringify_keys
       end

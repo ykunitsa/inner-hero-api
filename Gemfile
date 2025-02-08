@@ -27,7 +27,7 @@ gem "rspec-rails"
 gem "kaminari"
 gem "dotenv-rails"
 gem "rack-cors"
-gem "jsonapi-serializer"
+gem "active_model_serializers"
 
 group :development, :test do
   gem "factory_bot_rails"

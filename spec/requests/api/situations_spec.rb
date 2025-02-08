@@ -11,7 +11,7 @@ RSpec.describe 'Situations API', type: :request do
     before { get '/api/situations', headers: headers }
 
     it 'returns all situations' do
-      expect(response_json.size).to eq(5)
+      expect(response_json['situations'].count).to eq(5)
       expect(response).to have_http_status(:ok)
     end
   end
@@ -20,7 +20,7 @@ RSpec.describe 'Situations API', type: :request do
     before { get "/api/situations/#{situation_id}", headers: headers }
 
     it 'returns the situation' do
-      expect(response_json['id']).to eq(situation_id)
+      expect(response_json['situation']['id']).to eq(situation_id)
       expect(response).to have_http_status(:ok)
     end
 
@@ -49,7 +49,7 @@ RSpec.describe 'Situations API', type: :request do
 
     context 'when the request is valid' do
       it 'creates a situation' do
-        expect(response_json['name']).to eq('Public Speaking')
+        expect(response_json['situation']['name']).to eq('Public Speaking')
         expect(response).to have_http_status(:created)
       end
     end
@@ -77,7 +77,7 @@ RSpec.describe 'Situations API', type: :request do
 
     context 'when the situation exists' do
       it 'updates the situation' do
-        expect(response_json['name']).to eq('Updated Name')
+        expect(response_json['situation']['name']).to eq('Updated Name')
         expect(response).to have_http_status(:ok)
       end
     end

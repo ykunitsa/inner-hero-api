@@ -18,7 +18,7 @@ module Api
 
       def respond_with(current_user, _opts = {})
         if resource.persisted?
-          render json: { data: UserSerializer.new(current_user).serializable_hash[:data][:attributes] }
+          render json: current_user
         else
           render json: { errors: current_user.errors }, status: :unprocessable_entity
         end
