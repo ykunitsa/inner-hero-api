@@ -4,17 +4,17 @@ module Api
 
     def index
       situations = Situation.all
-      render json: situations, status: :ok
+      render json: situations, include: [], status: :ok
     end
 
     def show
-      render json: @situation, status: :ok
+      render json: @situation, include: [], status: :ok
     end
 
     def create
       situation = Situation.new(situation_params)
       if situation.save
-        render json: situation, status: :created
+        render json: situation, include: [], status: :created
       else
         render json: { errors: situation.errors.full_messages }, status: :unprocessable_entity
       end
@@ -22,7 +22,7 @@ module Api
 
     def update
       if @situation.update(situation_params)
-        render json: @situation, status: :ok
+        render json: @situation, include: [], status: :ok
       else
         render json: { errors: @situation.errors.full_messages }, status: :unprocessable_entity
       end

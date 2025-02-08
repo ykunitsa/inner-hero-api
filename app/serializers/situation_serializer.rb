@@ -1,5 +1,5 @@
-class SituationSerializer
-  include JSONAPI::Serializer
+class SituationSerializer < ActiveModel::Serializer
+  attributes :id, :name, :description
 
-  attributes :name, :description
+  has_many :exposures
 end

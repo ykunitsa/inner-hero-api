@@ -4,18 +4,18 @@ module Api
 
     def index
       @exposures = Exposure.for_user(current_user).includes(:situation)
-      render json: ExposureSerializer.new(@exposures).serializable_hash, status: :ok
+      render json: @exposures, include: [], status: :ok
     end
 
     def show
-      render json: ExposureSerializer.new(@exposure).serializable_hash, status: :ok
+      render json: @exposure, include: [], status: :ok
     end
 
     def create
       @exposure = Exposure.new(create_exposure_params)
 
       if @exposure.save
-        render json: ExposureSerializer.new(@exposure).serializable_hash, status: :created
+        render json: @exposure, include: [], status: :created
       else
         render json: { errors: @exposure.errors.full_messages }, status: :unprocessable_entity
       end
@@ -23,7 +23,7 @@ module Api
 
     def update
       if @exposure.update(update_exposure_params)
-        render json: ExposureSerializer.new(@exposure).serializable_hash, status: :ok
+        render json: @exposure, include: [], status: :ok
       else
         render json: { errors: @exposure.errors.full_messages }, status: :unprocessable_entity
       end

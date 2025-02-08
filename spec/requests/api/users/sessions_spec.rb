@@ -9,11 +9,9 @@ RSpec.describe 'Sessions', type: :request do
 
       expect(response).to have_http_status(:ok)
       expect(JSON.parse(response.body)).to eq(
-        'data' => {
-          'user' => {
-            'id' => user.id,
-            'email' => user.email
-          }
+        'user' => {
+          'id' => user.id,
+          'email' => user.email
         }
       )
     end

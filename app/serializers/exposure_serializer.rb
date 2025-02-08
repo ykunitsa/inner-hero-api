@@ -1,5 +1,6 @@
-class ExposureSerializer
-  include JSONAPI::Serializer
+class ExposureSerializer < ActiveModel::Serializer
+  attributes :id, :title, :description
 
-  attributes :title, :description
+  belongs_to :situation
+  belongs_to :user
 end
