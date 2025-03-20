@@ -1,7 +1,5 @@
-class ApplicationController < ActionController::Base
+class ApplicationController < ActionController::API
   include RequestErrorable
-
-  allow_browser versions: :modern
 
   respond_to :json
 
