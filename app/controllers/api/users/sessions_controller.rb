@@ -10,17 +10,16 @@ module Api
       def refresh_token
         refresh_token = request.cookies["refresh_token"]
 
-        head :unauthorized if refresh_token.nil?
+        head :unauthorized and return if refresh_token.nil?
 
-        current_user = find_user_by_refresh_token(token)
+        current_user = find_user_by_refresh_token(refresh_token)
 
-        head :unauthorized if current_user.nil?
+        head :unauthorized and return if current_user.nil?
 
         update_auth_tokens(current_user)
 
-        current_user.update(jti: SecureRandom.uuid)
         head :ok
-      rescue JWT::VerificationError
+      rescue JWT::VerificationError, JWT::DecodeError
         head :unauthorized
       end
 
