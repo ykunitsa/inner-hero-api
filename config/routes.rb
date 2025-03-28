@@ -20,7 +20,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :situations, only: [ :index, :show, :create, :update, :destroy ]
-    resources :exposures, only: [ :index, :show, :create, :update, :destroy ]
+    resources :exposures, only: [ :index, :show, :create, :update, :destroy ] do
+      resources :exposure_steps, only: %i[index show create update destroy], module: :exposures
+    end
     namespace :users do
       resource :me, only: :show, controller: "me"
       devise_scope :user do

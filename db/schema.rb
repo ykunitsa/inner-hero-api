@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_09_174337) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_08_153728) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "exposure_steps", force: :cascade do |t|
+    t.bigint "exposure_id", null: false
+    t.string "title"
+    t.text "description"
+    t.integer "duration"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exposure_id"], name: "index_exposure_steps_on_exposure_id"
+  end
 
   create_table "exposures", force: :cascade do |t|
     t.string "title", null: false
@@ -46,6 +56,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_09_174337) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "exposure_steps", "exposures"
   add_foreign_key "exposures", "situations"
   add_foreign_key "exposures", "users"
 end
